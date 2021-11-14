@@ -11,8 +11,8 @@ namespace HotelFinder.DataAccess.Abstract
     {
         List<Hotel> GetAllHotels(); // Database Read (Select *) = Rest Http Get
         Hotel GetHotelById(int id); // Database Read (Select * Where Id=id) = Rest Http Get {id}
-        Hotel CreateHotel(Hotel hotel); // Database Create (Insert) = Rest Http Post {json}
-        Hotel UpdateHotel(Hotel hotel); // Database Update (Update) = Rest Http Put {json}
-        void DeleteHotel(int id); // Database Delete (Delete) = Rest Http Delete {id}
+        Hotel CreateHotel(Hotel hotel); // Database (Write) Create (Insert) = Rest Http Post {json} // Need to save changes
+        Hotel UpdateHotel(Hotel hotel); // Database (Write) Update (Update) = Rest Http Put {json} // Need to save changes
+        void DeleteHotel(int id); // Database (Write) Delete (Delete) = Rest Http Delete {id} // Need to save changes
     }
 }

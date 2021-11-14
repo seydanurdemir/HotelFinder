@@ -12,27 +12,47 @@ namespace HotelFinder.DataAccess.Concrete
     {
         public Hotel CreateHotel(Hotel hotel)
         {
-            throw new NotImplementedException();
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                hotelDbContext.Hotels.Add(hotel);
+                hotelDbContext.SaveChanges();
+                return hotel;
+            }
         }
 
         public void DeleteHotel(int id)
         {
-            throw new NotImplementedException();
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                hotelDbContext.Hotels.Remove(GetHotelById(id));
+                hotelDbContext.SaveChanges();
+            }
         }
 
         public List<Hotel> GetAllHotels()
         {
-            throw new NotImplementedException();
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                return hotelDbContext.Hotels.ToList();
+            }
         }
 
         public Hotel GetHotelById(int id)
         {
-            throw new NotImplementedException();
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                return hotelDbContext.Hotels.Find(id); // if id was not primary key (unique), then use FirstOrDefault method
+            }
         }
 
         public Hotel UpdateHotel(Hotel hotel)
         {
-            throw new NotImplementedException();
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                hotelDbContext.Hotels.Update(hotel);
+                hotelDbContext.SaveChanges();
+                return hotel;
+            }
         }
     }
 }
