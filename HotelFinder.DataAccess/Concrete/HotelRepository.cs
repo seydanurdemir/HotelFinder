@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelFinder.DataAccess.Concrete
 {
-    class HotelRepository : IHotelRepository
+    public class HotelRepository : IHotelRepository
     {
         public Hotel CreateHotel(Hotel hotel)
         {
