@@ -1,3 +1,7 @@
+using HotelFinder.Business.Abstract;
+using HotelFinder.Business.Concrete;
+using HotelFinder.DataAccess.Abstract;
+using HotelFinder.DataAccess.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +29,8 @@ namespace HotelFinder.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            // will be changed when adding dependency injection
+            services.AddSingleton<IHotelService, HotelManager>(); // dependency injection
+            services.AddSingleton<IHotelRepository, HotelRepository>(); // dependency injection
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

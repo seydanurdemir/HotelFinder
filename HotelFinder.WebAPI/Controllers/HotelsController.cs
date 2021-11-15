@@ -16,9 +16,9 @@ namespace HotelFinder.WebAPI.Controllers
     {
         private IHotelService _hotelService;
         
-        public HotelsController()
+        public HotelsController(IHotelService hotelService)
         {
-            _hotelService = new HotelManager(); // will be changed when adding dependency injection
+            _hotelService = hotelService; // dependency injection
         }
 
         [HttpGet]
@@ -34,13 +34,13 @@ namespace HotelFinder.WebAPI.Controllers
         }
 
         [HttpPost]
-        public Hotel Post(Hotel hotel)
+        public Hotel Post([FromBody]Hotel hotel)
         {
             return _hotelService.CreateHotel(hotel);
         }
 
         [HttpPut]
-        public Hotel Put(Hotel hotel)
+        public Hotel Put([FromBody]Hotel hotel)
         {
             return _hotelService.UpdateHotel(hotel);
         }

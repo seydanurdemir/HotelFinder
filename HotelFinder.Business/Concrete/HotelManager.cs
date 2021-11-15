@@ -13,10 +13,10 @@ namespace HotelFinder.Business.Concrete
     public class HotelManager : IHotelService
     {
         private IHotelRepository _hotelRepository;
-        public HotelManager()
+        public HotelManager(IHotelRepository hotelRepository)
         {
             // add business rules
-            _hotelRepository = new HotelRepository(); // will be changed when adding dependency injection
+            _hotelRepository = hotelRepository; // dependency injection
         }
         public Hotel CreateHotel(Hotel hotel)
         {
