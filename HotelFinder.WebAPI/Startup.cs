@@ -31,7 +31,19 @@ namespace HotelFinder.WebAPI
             services.AddControllers();
             services.AddSingleton<IHotelService, HotelManager>(); // dependency injection
             services.AddSingleton<IHotelRepository, HotelRepository>(); // dependency injection
-            services.AddSwaggerDocument();
+            services.AddSwaggerDocument(config => 
+            {
+                config.PostProcess = (doc => 
+                {
+                    doc.Info.Title = "All Hotels API";
+                    doc.Info.Version = "1.0.0";
+                    doc.Info.Contact = new NSwag.OpenApiContact() {
+                        Name = "Seyda Nur DEMIR",
+                        Email = "dmrsydnr@gmail.com",
+                        Url = "https://www.seydanurdemir.com"
+                    };
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
