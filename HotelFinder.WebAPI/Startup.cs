@@ -40,7 +40,7 @@ namespace HotelFinder.WebAPI
                     doc.Info.Contact = new NSwag.OpenApiContact() {
                         Name = "Seyda Nur DEMIR",
                         Email = "dmrsydnr@gmail.com",
-                        Url = "https://www.seydanurdemir.com"
+                        Url = "https://seydanurdemir.com"
                     };
                 });
             });
