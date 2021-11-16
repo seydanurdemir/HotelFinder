@@ -31,6 +31,7 @@ namespace HotelFinder.WebAPI
             services.AddControllers();
             services.AddSingleton<IHotelService, HotelManager>(); // dependency injection
             services.AddSingleton<IHotelRepository, HotelRepository>(); // dependency injection
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +43,9 @@ namespace HotelFinder.WebAPI
             }
 
             app.UseRouting();
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseAuthorization();
 
