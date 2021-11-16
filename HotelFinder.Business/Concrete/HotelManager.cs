@@ -1,11 +1,7 @@
 ﻿using HotelFinder.Business.Abstract;
 using HotelFinder.DataAccess.Abstract;
-using HotelFinder.DataAccess.Concrete;
 using HotelFinder.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelFinder.Business.Concrete
@@ -18,44 +14,44 @@ namespace HotelFinder.Business.Concrete
             // add business rules
             _hotelRepository = hotelRepository; // dependency injection
         }
-        public Hotel CreateHotel(Hotel hotel)
+        public async Task<Hotel> CreateHotel(Hotel hotel)
         {
             // add business rules
-            return _hotelRepository.CreateHotel(hotel);
+            return await _hotelRepository.CreateHotel(hotel);
         }
 
-        public void DeleteHotel(int id)
+        public async Task DeleteHotel(int id)
         {
             // add business rules
             // sample business rule addition
-            if (id < 1)
-            {
-                throw new Exception("id can not be less than 1");
-            }
-            _hotelRepository.DeleteHotel(id);
+            //if (id < 1)
+            //{
+            //    throw new Exception("id can not be less than 1");
+            //}
+            await _hotelRepository.DeleteHotel(id);
         }
 
-        public List<Hotel> GetAllHotels()
+        public async Task<List<Hotel>> GetAllHotels()
         {
             // add business rules
-            return _hotelRepository.GetAllHotels();
+            return await _hotelRepository.GetAllHotels();
         }
 
-        public Hotel GetHotelById(int id)
+        public async Task<Hotel> GetHotelById(int id)
         {
             // add business rules
             // sample business rule addition
-            if (id < 1)
-            {
-                throw new Exception("id can not be less than 1");
-            }
-            return _hotelRepository.GetHotelById(id);
+            //if (id < 1)
+            //{
+            //    throw new Exception("id can not be less than 1");
+            //}
+            return await _hotelRepository.GetHotelById(id);
         }
 
-        public Hotel UpdateHotel(Hotel hotel)
+        public async Task<Hotel> UpdateHotel(Hotel hotel)
         {
             // add business rules
-            return _hotelRepository.UpdateHotel(hotel);
+            return await _hotelRepository.UpdateHotel(hotel);
         }
     }
 }

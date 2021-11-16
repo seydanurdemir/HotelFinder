@@ -33,9 +33,9 @@ namespace HotelFinder.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var hotels = _hotelService.GetAllHotels();
+            var hotels = await _hotelService.GetAllHotels();
             return Ok(hotels); // 200 + data
         }
 
@@ -46,9 +46,9 @@ namespace HotelFinder.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]/{id}")]
-        public IActionResult GetHotelById(int id)
+        public async Task<IActionResult> GetHotelById(int id)
         {
-            var hotel = _hotelService.GetHotelById(id);
+            var hotel = await _hotelService.GetHotelById(id);
             if (hotel != null) 
             {
                 return Ok(hotel); // 200 + data
@@ -63,13 +63,13 @@ namespace HotelFinder.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
-        public IActionResult CreateHotel([FromBody]Hotel hotel)
+        public async Task<IActionResult> CreateHotel([FromBody]Hotel hotel)
         {
             // [ApiController] annotation already controls validation
             // We can remove this control from here
             //if (ModelState.IsValid)
             //{
-                var createdHotel = _hotelService.CreateHotel(hotel);
+                var createdHotel = await _hotelService.CreateHotel(hotel);
                 return CreatedAtAction("Get", new { id = createdHotel.Id }, createdHotel ); // 201 + data
             //}
             //return BadRequest(ModelState); // 400 + validation errors
@@ -82,11 +82,11 @@ namespace HotelFinder.WebAPI.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
-        public IActionResult UpdateHotel([FromBody]Hotel hotel)
+        public async Task<IActionResult> UpdateHotel([FromBody]Hotel hotel)
         {
-            if (_hotelService.GetHotelById(hotel.Id) != null) 
+            if (await _hotelService.GetHotelById(hotel.Id) != null) 
             {
-                return Ok(_hotelService.UpdateHotel(hotel)); // 200 + data
+                return Ok(await _hotelService.UpdateHotel(hotel)); // 200 + data
             }
             return NotFound(); // 404
         }
@@ -97,11 +97,11 @@ namespace HotelFinder.WebAPI.Controllers
         /// <param name="id"></param>
         [HttpDelete]
         [Route("[action]/{id}")]
-        public IActionResult DeleteHotel(int id)
+        public async Task<IActionResult> DeleteHotel(int id)
         {
-            if (_hotelService.GetHotelById(id) != null)
+            if (await _hotelService.GetHotelById(id) != null)
             {
-                _hotelService.DeleteHotel(id);
+                await _hotelService.DeleteHotel(id);
                 return Ok(); // 200
             }
             return NotFound(); // 404
